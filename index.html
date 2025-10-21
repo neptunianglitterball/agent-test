@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cult Cinema Curator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Cult Cinema Curator</h1>
+      <p>
+        Discover curated suggestions from the golden age of gialli, poliziotteschi,
+        Italian erotica, and Hammer horror (1967 &ndash; 1981).
+      </p>
+    </header>
+
+    <main>
+      <section class="panel" aria-labelledby="instant-title">
+        <div class="panel-header">
+          <h2 id="instant-title">Instant Picks</h2>
+          <button id="suggestBtn" type="button">Suggest 5 Films</button>
+        </div>
+        <p class="panel-intro">
+          Hit the button to receive five deep-cut recommendations across the entire
+          catalogue.
+        </p>
+        <ul id="suggestions" class="movie-list" aria-live="polite"></ul>
+      </section>
+
+      <section class="panel" aria-labelledby="quiz-title">
+        <h2 id="quiz-title">Mood Matcher Quiz</h2>
+        <p class="panel-intro">
+          Answer five quick questions to match tonight's vibe with the perfect reels.
+        </p>
+        <form id="moodForm" novalidate>
+          <fieldset>
+            <legend>1. Which tone calls to you right now?</legend>
+            <label>
+              <input type="radio" name="tone" value="decadent" required />
+              Lurid decadence and forbidden thrills
+            </label>
+            <label>
+              <input type="radio" name="tone" value="mysterious" />
+              Elegant mystery and stylish dread
+            </label>
+            <label>
+              <input type="radio" name="tone" value="ferocious" />
+              Raw energy and street-level grit
+            </label>
+            <label>
+              <input type="radio" name="tone" value="gothic" />
+              Gothic chills and supernatural menace
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>2. What's the ideal pace?</legend>
+            <label>
+              <input type="radio" name="pace" value="slow-burn" required />
+              Hypnotic slow-burn with mounting unease
+            </label>
+            <label>
+              <input type="radio" name="pace" value="kinetic" />
+              Fast, propulsive, and action heavy
+            </label>
+            <label>
+              <input type="radio" name="pace" value="pulsing" />
+              Sensual rhythm with dreamy detours
+            </label>
+            <label>
+              <input type="radio" name="pace" value="brisk-gothic" />
+              Brisk gothic romp through fog and candlelight
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>3. Preferred setting?</legend>
+            <label>
+              <input type="radio" name="setting" value="urban" required />
+              Neon-lit cities and crime-ridden streets
+            </label>
+            <label>
+              <input type="radio" name="setting" value="opulent" />
+              Opulent villas, catwalks, and jet-set haunts
+            </label>
+            <label>
+              <input type="radio" name="setting" value="secluded" />
+              Remote retreats hiding dark secrets
+            </label>
+            <label>
+              <input type="radio" name="setting" value="period" />
+              Gothic castles and misty moors
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>4. Which flavor of menace?</legend>
+            <label>
+              <input type="radio" name="menace" value="masked-killer" required />
+              Black-gloved killers and baroque murders
+            </label>
+            <label>
+              <input type="radio" name="menace" value="mob" />
+              Corrupt cops, ruthless gangs, and vendettas
+            </label>
+            <label>
+              <input type="radio" name="menace" value="seductive" />
+              Dangerous liaisons and erotic obsession
+            </label>
+            <label>
+              <input type="radio" name="menace" value="monstrous" />
+              Creatures, curses, and occult peril
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>5. What kind of aftertaste?</legend>
+            <label>
+              <input type="radio" name="aftertaste" value="enigmatic" required />
+              Enigmatic twists that linger
+            </label>
+            <label>
+              <input type="radio" name="aftertaste" value="triumphant" />
+              Cathartic justice and explosive finales
+            </label>
+            <label>
+              <input type="radio" name="aftertaste" value="sensuous" />
+              Sensuous haze and bittersweet desire
+            </label>
+            <label>
+              <input type="radio" name="aftertaste" value="macabre" />
+              Macabre fun with a wink of camp
+            </label>
+          </fieldset>
+
+          <button id="quizBtn" type="submit">Get Mood-Based Picks</button>
+        </form>
+        <ul id="quizSuggestions" class="movie-list" aria-live="polite"></ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        Crafted for cult cinema devotees. Every selection pulls from 1967&ndash;1981
+        releases only.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
