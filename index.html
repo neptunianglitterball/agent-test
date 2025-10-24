@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Surreal GenAI Video Idea Generator</title>
+    <meta name="description" content="Generate 5 surreal, liminal, nostalgic short video ideas with italodisco/sci‑fi/kitsch/camp vibes." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Bungee&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="grid-overlay" aria-hidden="true"></div>
+    <main class="app">
+      <header class="header">
+        <h1 class="title">Surreal GenAI Video Idea Generator</h1>
+        <p class="tag">Always surreal • liminal • nostalgic • italodisco • sci‑fi • kitsch • camp</p>
+      </header>
+
+      <section class="controls" aria-label="Idea controls">
+        <label class="seed-label" for="seedInput">Prompt or seed (optional)</label>
+        <div class="input-row">
+          <input id="seedInput" class="seed-input" type="text" placeholder="e.g., vending machines, seaside town, glitter" />
+          <button id="generateBtn" class="btn primary" aria-label="Generate ideas">Generate 5 ideas</button>
+          <button id="surpriseBtn" class="btn ghost" aria-label="Surprise me with random ideas">I'm feeling liminal</button>
+        </div>
+        <div class="actions-row">
+          <button id="copyBtn" class="btn" aria-label="Copy ideas to clipboard">Copy all</button>
+          <span class="hint">30–60s concepts • click generate to refresh</span>
+        </div>
+      </section>
+
+      <section id="ideas" class="ideas" aria-live="polite" aria-busy="false"></section>
+
+      <footer class="footer">
+        <span>Made for quick inspiration. No assets required.</span>
+      </footer>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,113 @@
+/* Root theme */
+:root {
+  --bg-1: #0b0f1a;
+  --bg-2: #1b1240;
+  --neon-pink: #ff3fd1;
+  --neon-cyan: #32f5ff;
+  --neon-yellow: #ffee32;
+  --glass: rgba(255, 255, 255, 0.06);
+  --glass-strong: rgba(255, 255, 255, 0.12);
+  --text: #e8ecff;
+  --muted: #a8b0d6;
+  --card-bg: rgba(10, 10, 18, 0.5);
+  --border: rgba(255, 255, 255, 0.14);
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 20% 0%, #1a1044 0%, var(--bg-1) 35%),
+              radial-gradient(800px 600px at 100% 100%, #102a44 0%, var(--bg-1) 40%),
+              linear-gradient(160deg, var(--bg-2), var(--bg-1));
+  background-attachment: fixed;
+}
+
+/* Subtle synthwave grid */
+.grid-overlay {
+  position: fixed; inset: 0; pointer-events: none; opacity: 0.25;
+  background-image:
+    radial-gradient(circle at 20% -10%, rgba(255,63,209,0.25), transparent 60%),
+    radial-gradient(circle at 120% 120%, rgba(50,245,255,0.25), transparent 60%),
+    linear-gradient(rgba(255,255,255,0.07), rgba(255,255,255,0.07)),
+    linear-gradient(transparent 23px, rgba(255,255,255,0.08) 24px),
+    linear-gradient(90deg, transparent 23px, rgba(255,255,255,0.08) 24px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px, 24px 24px;
+  mix-blend-mode: screen;
+}
+
+.app { max-width: 980px; margin: 0 auto; padding: 40px 24px 64px; }
+
+.header { text-align: center; margin-bottom: 24px; }
+.title {
+  font-family: "Bungee", system-ui;
+  font-size: 34px; letter-spacing: 0.5px; margin: 0 0 6px; text-shadow: 0 0 16px rgba(255,63,209,0.4);
+}
+.tag {
+  font-family: "Orbitron", monospace; font-size: 12px; text-transform: uppercase; color: var(--muted);
+  letter-spacing: 2px;
+}
+
+.controls { background: var(--glass); border: 1px solid var(--border); border-radius: 16px; padding: 16px; backdrop-filter: blur(8px); box-shadow: var(--shadow); }
+.seed-label { display: block; font-size: 12px; color: var(--muted); margin: 0 0 8px; }
+
+.input-row { display: grid; grid-template-columns: 1fr auto auto; gap: 10px; }
+.seed-input {
+  width: 100%; padding: 14px 14px; border-radius: 12px; border: 1px solid var(--border);
+  background: rgba(0,0,0,0.25); color: var(--text); outline: none; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+}
+.seed-input::placeholder { color: #98a1c6; }
+
+.btn { cursor: pointer; border-radius: 12px; border: 1px solid var(--border); padding: 12px 14px; color: var(--text);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2));
+  transition: transform 0.08s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.btn:hover { transform: translateY(-1px); border-color: var(--neon-cyan); box-shadow: 0 0 0 3px rgba(50,245,255,0.12); }
+.btn:active { transform: translateY(0); }
+.btn.primary {
+  background:
+    radial-gradient(80% 100% at 50% 0%, rgba(50,245,255,0.25), transparent 70%),
+    radial-gradient(80% 100% at 50% 120%, rgba(255,63,209,0.25), transparent 70%),
+    linear-gradient(180deg, rgba(255,255,255,0.1), rgba(0,0,0,0.25));
+  border-color: rgba(255,63,209,0.5);
+}
+.btn.ghost { background: rgba(0,0,0,0.25); }
+
+.actions-row { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.hint { color: var(--muted); font-size: 12px; }
+
+.ideas { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 22px 0 10px; }
+.idea-card {
+  position: relative; padding: 16px 16px 16px; border-radius: 16px; border: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(0,0,0,0.2)); backdrop-filter: blur(6px);
+  box-shadow: var(--shadow);
+}
+
+.idea-title { font-family: "Bungee", system-ui; font-size: 18px; margin: 0 0 8px; letter-spacing: 0.3px; text-shadow: 0 0 12px rgba(50,245,255,0.25); }
+.meta { font-family: "Orbitron", monospace; font-size: 11px; letter-spacing: 1.5px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; }
+.idea-text { line-height: 1.5; color: var(--text); margin: 0; }
+
+.badge-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.badge { font-family: "Orbitron", monospace; font-size: 10px; padding: 6px 8px; border-radius: 999px; border: 1px solid var(--border); background: rgba(0,0,0,0.25); color: var(--text);
+  box-shadow: 0 0 0 2px rgba(255,63,209,0.12) inset;
+}
+
+.footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 18px; }
+
+/* Fun kitsch corners */
+.idea-card::after {
+  content: "";
+  position: absolute; inset: 0; border-radius: 16px;
+  box-shadow: 0 0 40px rgba(255,63,209,0.15) inset, 0 0 30px rgba(50,245,255,0.12) inset;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  .input-row { grid-template-columns: 1fr; }
+}
