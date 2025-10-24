@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Surreal Video Ideas Generator ✨</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Mono:wght@400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Mono', monospace;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
+                        0 0 40px rgba(255, 105, 180, 0.4),
+                        inset 0 0 20px rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #764ba2;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 15px 20px;
+            border: 3px solid #764ba2;
+            border-radius: 15px;
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #f093fb;
+            box-shadow: 0 0 20px rgba(240, 147, 251, 0.5);
+            transform: translateY(-2px);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(118, 75, 162, 0.6);
+        }
+        
+        button:hover:before {
+            left: 100%;
+        }
+        
+        button:active {
+            transform: translateY(-1px);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .ideas-container {
+            display: none;
+        }
+        
+        .ideas-container.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .idea-card {
+            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(79, 172, 254, 0.1));
+            border: 2px solid #764ba2;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+            animation: slideIn 0.5s ease backwards;
+        }
+        
+        .idea-card:nth-child(1) { animation-delay: 0.1s; }
+        .idea-card:nth-child(2) { animation-delay: 0.2s; }
+        .idea-card:nth-child(3) { animation-delay: 0.3s; }
+        .idea-card:nth-child(4) { animation-delay: 0.4s; }
+        .idea-card:nth-child(5) { animation-delay: 0.5s; }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .idea-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);
+            border-color: #f093fb;
+        }
+        
+        .idea-number {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+        
+        .idea-text {
+            color: #333;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .rules {
+            background: rgba(240, 147, 251, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            border: 2px dashed #764ba2;
+        }
+        
+        .rules h3 {
+            font-family: 'Orbitron', sans-serif;
+            color: #764ba2;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .rules ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .rules li {
+            padding: 5px 0;
+            color: #333;
+            font-size: 0.85rem;
+        }
+        
+        .rules li:before {
+            content: "✨ ";
+            margin-right: 5px;
+        }
+        
+        .loading {
+            text-align: center;
+            color: #764ba2;
+            font-size: 1.2rem;
+            display: none;
+        }
+        
+        .loading.show {
+            display: block;
+            animation: pulse 1.5s ease infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 25px;
+            }
+            
+            button {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    
+    <div class="container">
+        <h1>✨ Surreal Video Generator ✨</h1>
+        <p class="subtitle">Italodisco • Sci-Fi • Kitsch • Camp • Dreams</p>
+        
+        <div class="input-section">
+            <label for="userInput">Enter a concept (or leave blank for pure chaos):</label>
+            <input 
+                type="text" 
+                id="userInput" 
+                placeholder="e.g., 'neon palm trees', 'time travelers', 'cosmic café'..."
+                autocomplete="off"
+            >
+        </div>
+        
+        <div class="button-container">
+            <button id="generateBtn" onclick="generateIdeas()">
+                🌟 Generate Ideas 🌟
+            </button>
+        </div>
+        
+        <div class="loading" id="loading">
+            ✨ Channeling the void... ✨
+        </div>
+        
+        <div class="ideas-container" id="ideasContainer"></div>
+        
+        <div class="rules">
+            <h3>🎬 The Rules:</h3>
+            <ul>
+                <li><strong>Themes:</strong> Surreal, Liminal, Nostalgic</li>
+                <li><strong>Aesthetic:</strong> Italodisco, Sci-Fi, Kitsch, Camp</li>
+                <li><strong>Duration:</strong> 30-60 seconds max</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Create animated stars background
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+        createStars();
+
+        // Video idea components for generation
+        const subjects = [
+            'holographic fortune tellers', 'sentient mannequins', 'chrome-plated flamingos',
+            'disco-ball headed beings', 'vintage robots', 'neon ghosts', 'android poodles',
+            'cosmic bellhops', 'synth-wave mermaids', 'time-traveling aerobics instructors',
+            'VHS angels', 'glitter cowboys', 'cassette tape collectors', 'pixel art prophets',
+            'laser harp players', 'chrome grandmothers', 'holographic elvis impersonators',
+            'cyberpunk librarians', 'disco priests', 'neon monks', 'synth wizards',
+            'retrofuture archaeologists', 'liminal space tourists', 'memory merchants',
+            'dream DJs', 'nostalgia dealers', 'temporal janitors', 'void swimmers',
+            'pink panther androids', 'geometric panthers', 'chrome cherubs'
+        ];
+
+        const actions = [
+            'dancing in', 'discovering', 'lost in', 'hosting a party in', 'racing through',
+            'performing rituals in', 'shopping at', 'time-traveling through', 'falling through',
+            'awakening in', 'broadcasting from', 'serving drinks at', 'getting married in',
+            'teaching aerobics in', 'roller skating through', 'speed dating at', 'karaoke night in',
+            'meditation sessions in', 'fashion shows in', 'game shows in', 'exercising in',
+            'painting portraits in', 'having tea parties in', 'therapy sessions in'
+        ];
+
+        const settings = [
+            'an abandoned mall filled with neon lights and fog machines',
+            'a liminal airport terminal that loops endlessly',
+            'an underwater disco with floating cassette tapes',
+            'a chrome desert with pink tumbleweeds',
+            'a VHS rental store that exists between dimensions',
+            'an infinite hotel lobby stuck in 1987',
+            'a pastel-colored brutalist parking garage',
+            'a cosmic laundromat where memories are washed',
+            'an empty pool filled with holographic water',
+            'a neon-lit highway that leads nowhere',
+            'a vintage arcade at the edge of the universe',
+            'a liminal waiting room with impossible geometry',
+            'an abandoned theme park on a purple planet',
+            'a retro diner floating in the void',
+            'a nostalgic office space where time stands still',
+            'a geometric garden of chrome flowers',
+            'an elevator that travels through decades',
+            'a vaporwave temple with marble columns and palm trees',
+            'a shopping channel broadcast from another dimension',
+            'a fitness club in a parallel 1984'
+        ];
+
+        const twists = [
+            'but everything is slightly wrong', 'as reality glitches around them',
+            'while synth music plays backwards', 'as the colors slowly invert',
+            'but they\'re all made of static', 'while time loops every 45 seconds',
+            'as memories leak into the scene', 'but gravity works sideways',
+            'while VHS tracking errors appear', 'as they slowly realize they\'re in a dream',
+            'but they\'re all reflections with no source', 'while the soundtrack is underwater',
+            'as analog nostalgia collides with digital future', 'but they\'re trapped in a gif loop',
+            'while someone fast-forwards and rewinds their lives', 'as they phase between realities',
+            'but they\'re all holograms that don\'t know it', 'while commercials interrupt reality'
+        ];
+
+        const aestheticElements = [
+            'bathed in magenta and cyan lighting', 'covered in chrome and holographic textures',
+            'with VHS scan lines and tracking errors', 'in a world of geometric shapes and gradients',
+            'surrounded by neon grids and palm trees', 'with a synthwave sunset in the background',
+            'featuring excessive lens flares and grain', 'with retro-futuristic fashion and hair',
+            'in an environment of pink and purple hues', 'with visible pixels and digital artifacts',
+            'featuring Italian sports cars and synthesizers', 'in a Miami Vice meets Kubrick aesthetic',
+            'with theatrical camp and knowing winks', 'in deliberately tacky magnificence'
+        ];
+
+        function generateIdeas() {
+            const input = document.getElementById('userInput').value.trim();
+            const loading = document.getElementById('loading');
+            const ideasContainer = document.getElementById('ideasContainer');
+            const generateBtn = document.getElementById('generateBtn');
+            
+            // Show loading
+            loading.classList.add('show');
+            ideasContainer.classList.remove('show');
+            generateBtn.disabled = true;
+            
+            // Simulate generation time for effect
+            setTimeout(() => {
+                const ideas = [];
+                
+                for (let i = 0; i < 5; i++) {
+                    let idea = generateSingleIdea(input);
+                    ideas.push(idea);
+                }
+                
+                displayIdeas(ideas);
+                loading.classList.remove('show');
+                ideasContainer.classList.add('show');
+                generateBtn.disabled = false;
+            }, 1500);
+        }
+
+        function generateSingleIdea(userInput) {
+            const subject = random(subjects);
+            const action = random(actions);
+            const setting = random(settings);
+            const twist = random(twists);
+            const aesthetic = random(aestheticElements);
+            
+            let idea = '';
+            
+            if (userInput && Math.random() > 0.3) {
+                // Incorporate user input 70% of the time when provided
+                const templates = [
+                    `${subject} encounter ${userInput} while ${action} ${setting}, ${twist}, all ${aesthetic}`,
+                    `A world where ${userInput} has replaced reality: ${subject} ${action} ${setting}, ${twist}, ${aesthetic}`,
+                    `${userInput} manifests as ${subject} ${action} ${setting}, ${twist}, filmed ${aesthetic}`,
+                    `Documentary about ${subject} obsessed with ${userInput}, ${action} ${setting}, ${twist}, shot ${aesthetic}`,
+                    `${userInput}-themed fever dream where ${subject} are ${action} ${setting}, ${twist}, ${aesthetic}`
+                ];
+                idea = random(templates);
+            } else {
+                // Pure random chaos
+                const templates = [
+                    `${subject} ${action} ${setting}, ${twist}, all ${aesthetic}`,
+                    `${subject} ${action} ${setting}, ${twist}, captured ${aesthetic}`,
+                    `A story of ${subject} ${action} ${setting}, ${twist}, presented ${aesthetic}`,
+                    `Watch as ${subject} attempt ${action} ${setting}, ${twist}, filmed ${aesthetic}`,
+                    `${subject} ${action} ${setting}, ${twist}, ${aesthetic}`
+                ];
+                idea = random(templates);
+            }
+            
+            // Capitalize first letter
+            return idea.charAt(0).toUpperCase() + idea.slice(1);
+        }
+
+        function displayIdeas(ideas) {
+            const container = document.getElementById('ideasContainer');
+            container.innerHTML = '';
+            
+            ideas.forEach((idea, index) => {
+                const card = document.createElement('div');
+                card.className = 'idea-card';
+                card.innerHTML = `
+                    <div class="idea-number">IDEA ${index + 1}</div>
+                    <div class="idea-text">${idea}</div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function random(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+
+        // Allow Enter key to generate
+        document.getElementById('userInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                generateIdeas();
+            }
+        });
+    </script>
+</body>
+</html>
