@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="description" content="Generate surreal, liminal, nostalgic Italo‑disco sci‑fi kitsch/camp video ideas (30–60s)." />
+    <title>Surreal Italo‑Disco Video Idea Generator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="hero">
+        <h1 class="title">GENAI: Surreal • Liminal • Nostalgic</h1>
+        <p class="subtitle">Aesthetic: <strong>Italo‑disco</strong> × <strong>Sci‑Fi</strong> × <strong>Kitsch</strong> × <strong>Camp</strong> — 30–60s ideas</p>
+      </header>
+
+      <section class="controls">
+        <label for="seedInput" class="seed-label">Optional seed or vibe</label>
+        <div class="control-row">
+          <input id="seedInput" class="seed-input" type="text" placeholder="e.g. chrome mermaids / Ferris wheel in fog / VHS oracle" />
+          <button id="generateBtn" class="btn primary">Generate 5 ideas</button>
+          <button id="randomBtn" class="btn ghost" title="Generate without a seed">Surprise me</button>
+        </div>
+      </section>
+
+      <section id="results" class="results" aria-live="polite"></section>
+
+      <footer class="footer">
+        <p>Outputs are always surreal, liminal, nostalgic with an Italo‑disco sci‑fi kitsch/camp vibe. Each concept fits a 30–60s short.</p>
+      </footer>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
