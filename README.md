@@ -1,10 +1,10 @@
 # Surreal GenAI Video Idea Generator
 
-Generate 5 short video concepts that are always surreal, liminal, nostalgic with a mixed italodisco / sci‑fi / kitsch / camp aesthetic. Each idea targets a 30–60 second runtime.
+Generate 3 short video concepts that are always surreal, liminal, nostalgic with a mixed italodisco / sci‑fi / kitsch / camp aesthetic. Each idea targets a 30–60 second runtime.
 
 ## Quick start
 - Open `index.html` in any modern browser. No build, no dependencies.
-- Optionally type a prompt/seed, then click "Generate 5 ideas".
+- Optionally type a prompt/seed, then click "Generate 3 ideas".
 - Or click "I'm feeling liminal" for a fully random set.
 - Use "Copy all" to paste the results elsewhere.
 
@@ -24,12 +24,6 @@ Inside a CRT living room, a tape recorder that steals dreams finds a neon portal
 
 3) Liminal Roller Forever — 36s
 At a roller rink at midnight, a night-shift lifeguard with a keytar meets a parallel self via CCTV. 808 claps echo down vacant corridors as inflatable moons and glitter confetti float in slow motion.
-
-4) Memory of Bowling — 59s
-In a neon-lit bowling alley, bingo hall divas in space suits trigger a time loop that resets on every clap. Icy pad chords hang in the air while sequin curtains ripple like holograms.
-
-5) Arcade Glitter Transmission — 31s
-In an abandoned mall food court, a karaoke robot with stage fright makes gravity flicker with the bassline. A four-on-the-floor drum machine thumps as novelty sunglasses pass between mannequins like secret keys.
 ```
 
 ## Tech

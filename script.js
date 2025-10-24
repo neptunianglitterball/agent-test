@@ -212,7 +212,7 @@
   function handleGenerate(fromSurprise = false) {
     setBusy(true);
     const seed = fromSurprise ? '' : seedInput.value;
-    lastIdeas = generateIdeas(5, seed);
+    lastIdeas = generateIdeas(3, seed);
     renderIdeas(lastIdeas);
     setBusy(false);
   }
